@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Score Checker</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>Score: {{ score }}</p>
+
+      <div v-if="showTitle">
+        <h3>{{ title }} - {{ author }} - {{ age }} years old</h3>
+      </div>
+
+      <!-- Grade Checker -->
+      <p v-if="score >= 80">A Grade</p>
+      <p v-else-if="score >= 60">B Grade</p>
+      <p v-else-if="score >= 40">C Grade</p>
+      <p v-else>Fail</p>
+
+      <button @click="increaseScore">Increase Score</button>
+      <button @click="showAlert">work</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <script>
+      const { createApp, ref } = Vue;
+
+      createApp({
+        setup() {
+          const score = ref(30);
+
+          const showAlert = () => {
+            alert();
+          };
+          const increaseScore = () => {
+            score.value += 10;
+          };
+
+          return { score, increaseScore, showAlert };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
