@@ -1,0 +1,74 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue v-bind loop</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+
+    <style>
+      .text-success {
+        background-color: rgba(83, 208, 208, 0.175);
+      }
+      .bg-color {
+        background-color: rgba(53, 67, 174, 0.433);
+      }
+      .text-primary {
+        background-color: rgba(137, 43, 226, 0.348);
+      }
+
+      ul li {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app" class="container py-5">
+      <ul>
+        <li
+          v-for="item in items"
+          :class="[item.mainClass, item.extraClass]"
+          @click="ToggleSwitch(item)"
+        >
+          {{ item.text }}
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            items: [
+              { text: "Vue", mainClass: "fw-bold", extraClass: "text-success" },
+              {
+                text: "React",
+                mainClass: "fw-bold",
+                extraClass: "text-primary",
+              },
+              {
+                text: "Angular",
+                mainClass: "fw-bold",
+                extraClass: "text-danger",
+              },
+            ],
+          };
+        },
+
+        methods: {
+          ToggleSwitch(item) {
+            item.mainClass =
+              item.mainClass === "fw-bold" ? "bg-color" : "fw-bold";
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>

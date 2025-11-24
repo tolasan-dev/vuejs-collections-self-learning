@@ -1,0 +1,50 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <!-- array objects students  -->
+      <div v-for="(students, index) in students">
+        {{index + 1}}. {{students.name}} - age {{students.age}} -
+        {{students.phoneNumber}}
+      </div>
+
+      <div class="mb-3"></div>
+    </div>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            students: [
+              { name: "Tola", age: 21, phoneNumber: "0001" },
+              { name: "Dara", age: 19, phoneNumber: "0002" },
+              { name: "Sina", age: 22, phoneNumber: "0003" },
+              { name: "Tola", age: 21, phoneNumber: "0004" },
+              { name: "Dara", age: 19, phoneNumber: "0005" },
+              { name: "Sina", age: 22, phoneNumber: "0006" },
+            ],
+          };
+        },
+      });
+
+      app.mount("#app");
+    </script>
+
+    <style>
+      .card {
+        width: 300px;
+        height: 300px;
+      }
+    </style>
+  </body>
+</html>

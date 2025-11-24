@@ -1,0 +1,78 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binding to Table - Vue 3</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="app" class="container mt-4">
+
+      <h3 class="mb-3">Book List</h3>
+
+      <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Author</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- Loop books -->
+          <tr v-for="(book, index) in books" :key="index">
+            <td>{{ index + 1 }}</td>
+
+            <!-- Bind image -->
+            <td>
+              <img :src="book.image" width="80">
+            </td>
+
+            <!-- Bind text fields -->
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <script>
+        
+      const app = Vue.createApp({
+        data() {
+          return {
+            books: [
+              {
+                title: "Vue Basics",
+                author: "Evan You",
+                image: "https://vuejs.org/images/logo.png",
+              },
+              {
+                title: "Nuxt Guide",
+                author: "Nuxt Team",
+                image:
+                  "https://kinsta.com/wp-content/uploads/2022/05/nuxt-js-logo.jpeg",
+              },
+              {
+                title: "JavaScript Mastery",
+                author: "Brendan Eich",
+                image:
+                  "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png",
+              },
+            ],
+          };
+        },
+      });
+
+      app.mount("#app");
+    </script>
+  </body>
+</html>

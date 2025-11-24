@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Score Checker</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <div class="card p-5 rounded-4">
+        <h2 class="fs">Product: Wireless Mouse</h2>
+
+        <p class="mb-1 qty">Quantity: <b>{{ quantity }}</b></p>
+
+        <p class="mb-3">
+          <span v-if="quantity >= 10">
+            <span class="status-dot green"></span>
+            In Stock
+          </span>
+
+          <span v-else-if="quantity >= 1">
+            <span class="status-dot yellow"></span>
+            Low Stock
+          </span>
+
+          <span v-else>
+            <span class="status-dot red"></span>
+            Out of Stock
+          </span>
+        </p>
+
+        <div class="d-flex">
+          <button @click="decrease" class="btn btn-danger rounded-pill me-2">
+            Decrease
+          </button>
+          <button @click="increase" class="btn btn-success rounded-pill">
+            Increase
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            quantity: 0,
+          };
+        },
+        methods: {
+          increase() {
+            this.quantity += 1;
+          },
+          decrease() {
+            if (this.quantity > 0) this.quantity -= 1;
+          },
+        },
+      });
+
+      app.mount("#app");
+    </script>
+
+    <style>
+      body {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+      }
+      .status-dot {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 6px;
+        vertical-align: -2px;
+      }
+
+      .qty {
+        color: rgb(22, 172, 172);
+        background: rgba(16, 227, 227, 0.251);
+        width: 120px;
+        border-radius: 5px;
+        padding: 0 10px;
+      }
+      .status-dot.green {
+        background: #28a745;
+      }
+      .status-dot.yellow {
+        background: #ffc107;
+      }
+      .status-dot.red {
+        background: #dc3545;
+      }
+    </style>
+  </body>
+</html>

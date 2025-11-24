@@ -22,6 +22,9 @@
       <button @click="increaseScore" class="btn btn-primary">
         Increase Score
       </button>
+      <button @click="showAlert" class="btn btn-primary ms-3">
+        Increase Score
+      </button>
     </div>
 
     <script src="https://unpkg.com/vue@3"></script>
@@ -38,7 +41,7 @@
             this.score += 10;
           },
           showAlert() {
-            alert("Hello");
+            alert("Javascript");
           },
         },
       });
