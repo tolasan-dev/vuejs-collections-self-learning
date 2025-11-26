@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue JS Map and Filter Example</title>
+
+    <!-- Vue 3 CDN -->
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <!-- Bootstrap 5 CDN (optional styling) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="p-4">
+    <div id="app" class="container">
+      <h4>All Users:</h4>
+      <ul>
+        <li v-for="user in users" :key="user.id">
+          {{ user.name }} ({{ user.age }})
+        </li>
+      </ul>
+
+      <hr />
+
+      <h4>Filter: Adults</h4>
+      <ul>
+        <li v-for="adult in adults" :key="adult.id">
+          {{ adult.name }}-{{ adult.age }}
+        </li>
+      </ul>
+
+      <hr />
+
+      <h4>List of Names Only</h4>
+      <ul>
+        <li v-for="name in userNames" :key="name">{{ name }}</li>
+      </ul>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+            endUser: [
+              { id: 1, name: "John", age: 23 },
+              { id: 2, name: "Anna", age: 22 },
+              { id: 3, name: "Mike", age: 19 },
+            ],
+          };
+        },
+
+        computed: {
+          adults() {
+            return this.endUser.filter((x) => x.age > 18);
+          },
+
+          userNames() {
+            return this.endUser.map((u) => u.name);
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
