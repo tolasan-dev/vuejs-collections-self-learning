@@ -50,7 +50,7 @@ export default {
       type: String,
       default: "Modal Title",
     },
-  
+
     message: {
       type: String,
       default: "",

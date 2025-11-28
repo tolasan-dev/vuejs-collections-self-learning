@@ -1,29 +1,10 @@
 # my-project
 
-## Project setup
 
-```
-npm install
-```
+Here is the simplest way to create a Theme Toggle (Light/Dark mode) using props + dynamic binding in Vue.js.
 
-### Compiles and hot-reloads for development
 
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# 1️⃣ Parent component (stores theme)
+# 2️⃣ Child component (toggle button)
+# 3️⃣ Props dynamic → child updates parent
+# 4️⃣ Dynamic class binding for theme

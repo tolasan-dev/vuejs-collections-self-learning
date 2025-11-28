@@ -46,7 +46,7 @@ export default {
 
   methods: {
     openModal() {
-      // Grab the current value from the input using ref 
+      // Grab the current value from the input using ref
       const inputValue = this.$refs.txt.value.trim();
 
       // Update the text that will be passed as a prop
