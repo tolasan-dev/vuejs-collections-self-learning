@@ -1,104 +1,105 @@
 <template>
-  <div class="app-container">
-    <h1>Hello Vue Modal with Props</h1>
-    <p>
-      Type something below and click the button → it will appear in the modal
-      using a prop!
-    </p>
+  <div :class="theme + '-theme'" class="theme-container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-4">
+        <ThemeToggle :theme="theme" @toggleTheme="switchTheme" />
 
-    <!-- Input (no v-model!) -->
-    <input
-      type="text"
-      ref="txt"
-      placeholder="Type anything here..."
-      class="input-field"
-    />
+        <div class="card" :class="theme + '-theme'">
+          <h1>Welcome!</h1>
+          <p>This is {{ theme }} mode.</p>
+        </div>
 
-    <!-- Open Modal Button -->
-    <button @click="openModal" class="open-btn">Open Modal</button>
+        <!-- Input (no v-model!) -->
+        <input
+          type="text"
+          ref="txt"
+          placeholder="Type anything here..."
+          class="input-field"
+        />
 
-    <!-- MyModal - using props only -->
-    <MyModal
-      :show="isModalOpen"
-      title="You Typed This:"
-      :message="userTypedText"
-      @close="isModalOpen = false"
-    />
+        <!-- Open Modal Button -->
+        <button @click="openModal" class="btn btn-dark">Open Modal</button>
+        <!-- MyModal - using props only -->
+
+        <MyModal
+          :show="isModalOpen"
+          title="You Typed This:"
+          :message="userTypedText"
+          @close="isModalOpen = false"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import ThemeToggle from "./components/ThemeToggle.vue";
 import MyModal from "./components/MyModal.vue";
+// import MyModal from "./components/MyModal.vue";
 
 export default {
-  name: "App",
-
-  components: {
-    MyModal,
-  },
-
+  components: { ThemeToggle, MyModal },
   data() {
     return {
+      theme: "light",
       isModalOpen: false,
-      userTypedText: "", // This will be sent as a prop
+      userTypedText: "Hello from parent!", // <-- REQUIRED
     };
   },
-
   methods: {
+    switchTheme() {
+      this.theme = this.theme === "light" ? "dark" : "light";
+    },
     openModal() {
       // Grab the current value from the input using ref
       const inputValue = this.$refs.txt.value.trim();
 
+      if (inputValue === "") {
+        alert();
+        return;
+      }
+
       // Update the text that will be passed as a prop
-      this.userTypedText = inputValue || "You didn't type anything 😅";
+      this.userTypedText = inputValue;
 
       // Open the modal
       this.isModalOpen = true;
+
+      this.$refs.txt.value = "";
     },
   },
 };
 </script>
 
-<style scoped>
-.app-container {
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 30px;
-  font-family: system-ui, sans-serif;
-  text-align: center;
+<style>
+/* Apply theme variables to the container */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.theme-container {
+  min-height: 100vh;
+  padding: 20px;
 }
 
-h1 {
-  color: #2c3e50;
-  margin-bottom: 10px;
+/* Light Theme */
+.light-theme {
+  --primary-color: #007bff;
+  --text-color: #333;
+  --background-color: #ffffff;
+
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
-p {
-  color: #666;
-  margin-bottom: 30px;
-}
+/* Dark Theme */
+.dark-theme {
+  --primary-color: #6c757d;
+  --text-color: #f8f9fa;
+  --background-color: #343a40;
 
-.input-field {
-  padding: 12px 16px;
-  font-size: 1.1rem;
-  width: 300px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  margin-right: 10px;
-}
-
-.open-btn {
-  padding: 12px 24px;
-  font-size: 1.1rem;
-  background-color: #42b983;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.open-btn:hover {
-  background-color: #369e6e;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 </style>
