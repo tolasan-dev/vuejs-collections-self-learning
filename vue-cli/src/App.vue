@@ -1,65 +1,44 @@
+<!-- ParentComponent.vue -->
 <template>
-  <div :class="theme + '-theme'" class="theme-container">
-    <div class="row d-flex justify-content-center">
-      <div class="col-4">
-        <ThemeToggle :theme="theme" @toggleTheme="switchTheme" />
+  <div>
+    <button @click="showModal = true">Open Modal</button>
 
-        <div class="card" :class="theme + '-theme'">
-          <h1>Welcome!</h1>
-          <p>This is {{ theme }} mode.</p>
-        </div>
-      </div>
-    </div>
+    <!-- Use BaseModal because you imported BaseModal -->
+    <MyModal
+      :visible="showModal"
+      title="My Custom Modal"
+      @close="showModal = false"
+      @cancel="handleCancel"
+      @confirm="handleConfirm"
+    >
+      <p>This is the content INSIDE the modal (slot).</p>
+    </MyModal>
   </div>
 </template>
 
 <script>
-import ThemeToggle from "./components/ThemeToggle.vue";
+
+import MyModal from './components/MyModal.vue';
+
 
 export default {
-  components: { ThemeToggle },
+  components: {
+    MyModal,
+  },
   data() {
     return {
-      theme: "light",
+      showModal: false,
     };
   },
   methods: {
-    switchTheme() {
-      this.theme = this.theme === "light" ? "dark" : "light";
+    handleCancel() {
+      console.log("Modal cancelled");
+      this.showModal = false;
+    },
+    handleConfirm() {
+      console.log("Modal confirmed");
+      this.showModal = false;
     },
   },
 };
 </script>
-
-<style>
-/* Apply theme variables to the container */
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-.theme-container {
-  min-height: 100vh;
-  padding: 20px;
-}
-
-/* Light Theme */
-.light-theme {
-  --primary-color: #007bff;
-  --text-color: #333;
-  --background-color: #ffffff;
-
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-/* Dark Theme */
-.dark-theme {
-  --primary-color: #6c757d;
-  --text-color: #f8f9fa;
-  --background-color: #343a40;
-
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-</style>
