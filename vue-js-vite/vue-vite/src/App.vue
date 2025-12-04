@@ -1,20 +1,18 @@
-<template>
-  <p>Number : {{ num }}</p>
-  <br />
-  <p>String: {{ string }}</p>
+\<template>
+  <input v-model.trim="email" placeholder="Email" />
+
+  <!-- Show error when email is empty -->
+  <p v-if="!email">Email is required!</p>
+
+  <button type="button" @click="clearInput">Clear</button>
 </template>
 
-<script>
-// import { ref } from "vue"; 
+<script setup>
+import { ref } from "vue";
 
-export default {
-  setup() {
-    let num = ref(10);
-    let string = ref("Hello vue js with version running by vite");
+const email = ref("");
 
-    return { num, string };
-  },
-};
+function clearInput() {
+  email.value = "";
+}
 </script>
-
-<style></style>
