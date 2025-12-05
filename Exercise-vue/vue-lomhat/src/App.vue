@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <button @click="count++">Click: {{ count }}</button>
 </template>
 
@@ -7,14 +7,31 @@ import { ref, watch } from "vue";
 
 const count = ref(0);
 
-// watch(count, (newVal, oldVal) => {
-//   console.log("Count changed from", oldVal, "to", newVal);
-// });
 
 watch(
   () => count.value,
   (newVal, oldVal) => {
-    console.log(`New value is :${newVal} old value: ${oldVal}`);
+    if (newVal > 5 || oldVal >5) {
+      alert("hello wold");
+    }
   }
 );
+</script> -->
+
+<script setup>
+import { reactive } from "vue";
+
+const user = reactive({
+  name: "",
+  email: "",
+  age: "",
+});
 </script>
+
+<template>
+  <input v-model="user.name" placeholder="Name" />
+  <input v-model="user.email" placeholder="Email" />
+  <input v-model="user.age" placeholder="Age" />
+
+  <pre>{{ user }}</pre>
+</template>
