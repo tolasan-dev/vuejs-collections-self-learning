@@ -1,37 +1,6 @@
-<!-- <template>
-  <button @click="count++">Click: {{ count }}</button>
-</template>
-
-<script setup>
-import { ref, watch } from "vue";
-
-const count = ref(0);
-
-
-watch(
-  () => count.value,
-  (newVal, oldVal) => {
-    if (newVal > 5 || oldVal >5) {
-      alert("hello wold");
-    }
-  }
-);
-</script> -->
-
-<script setup>
-import { reactive } from "vue";
-
-const user = reactive({
-  name: "",
-  email: "",
-  age: "",
-});
-</script>
-
 <template>
-  <input v-model="user.name" placeholder="Name" />
-  <input v-model="user.email" placeholder="Email" />
-  <input v-model="user.age" placeholder="Age" />
-
-  <pre>{{ user }}</pre>
+  <div>
+    <h2>Hello</h2>
+    <BaseButton>Click Me</BaseButton>
+  </div>
 </template>
