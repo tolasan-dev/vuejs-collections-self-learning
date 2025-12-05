@@ -5,13 +5,10 @@ import App from "./App.vue";
 
 // import reuse components of button
 import BaseButton from "./components/BaseButton.vue";
+import BaseCard from "./components/BaseCard.vue";
 
+const app = createApp(App);
 
+app.component("BaseCard", BaseCard);
 
-
-const app = createApp(App)
-
-// register globally
-app.component('BaseButton', BaseButton)
-
-app.mount('#app')
+app.mount("#app");
