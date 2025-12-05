@@ -1,4 +1,5 @@
 body {
-  background: radial-gradient(circle at top, #0f100f, #2a503c);
+  /* background: radial-gradien(circle at top, #ffffff, #2a503c); */
+  /* background: linear-gradient(180deg, #fffafa 0%, #25d047 100%); */
   height: 100vh;
 }
