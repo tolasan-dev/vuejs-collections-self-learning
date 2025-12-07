@@ -29,13 +29,7 @@ const user = reactive({
 
 import {reactive } from "vue";
 
-const endUser = reactive({
-  
-  name: " ",
-  height: "",
-  age: "",
-  address: " "
-});
+
 </script>
 
 <template>
@@ -45,5 +39,5 @@ const endUser = reactive({
   <input v-model="user.age" placeholder="height" />
   <input v-model="user.age" placeholder="address" />
 
-  <pre>{{ endUser }}</pre>
+  <pre>{{ user }}</pre>
 </template>
